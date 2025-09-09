@@ -33,7 +33,7 @@ android {
     }
     buildFeatures {
 //        compose = true
-    }maven
+    }
 }
 
 dependencies {
