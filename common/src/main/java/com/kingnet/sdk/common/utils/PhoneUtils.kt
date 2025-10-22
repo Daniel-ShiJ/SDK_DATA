@@ -147,7 +147,7 @@ object PhoneUtils {
     @SuppressLint("MissingPermission")
     fun getMacAddress(context: Context): String {
         var macAddress = SpUtils.getString(context,MAC_ADDRESS_KEY)
-        LogUtils.e("macAddress = $macAddress")
+        LogUtils.e("macAddressNew = $macAddress")
         if (!macAddress.isNullOrBlank()){
             return macAddress
         }
@@ -180,7 +180,7 @@ object PhoneUtils {
      */
     private fun getAndroidId(context: Context):String{
         var androidId = SpUtils.getString(context,ANDROID_ID_KEY)
-        LogUtils.e("androidId = $androidId")
+        LogUtils.e("androidIdNew = $androidId")
         if (!androidId.isNullOrBlank()){
             return androidId
         }
@@ -201,7 +201,7 @@ object PhoneUtils {
      */
     fun getDeviceId(context: Context): String {
         var deviceID = SpUtils.getString(context,DEVICE_ID_KEY)
-        LogUtils.e("deviceID = $deviceID")
+        LogUtils.e("deviceIDNew = $deviceID")
         if (!deviceID.isNullOrBlank()){
             return deviceID
         }
