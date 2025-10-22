@@ -13,8 +13,8 @@ object Version {
     const val applicationId = "com.kingnet.sdk"
     const val minSdk = 24
     const val targetSdk = 33
-    val versionCode = 1
-    const val versionName = "1.0.0"
+    val versionCode = 2
+    const val versionName = "1.0.2"
 
     const val coreKtxVersion = "1.8.0"
     const val appCompatVersion = "1.6.1"

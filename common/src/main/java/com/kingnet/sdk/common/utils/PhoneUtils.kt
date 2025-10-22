@@ -143,9 +143,14 @@ object PhoneUtils {
         return result
     }
 
+    private const val MAC_ADDRESS_KEY = "mac_address_key"
     @SuppressLint("MissingPermission")
     fun getMacAddress(context: Context): String {
-        var macAddress = ""
+        var macAddress = SpUtils.getString(context,MAC_ADDRESS_KEY)
+
+        if (!macAddress.isNullOrBlank()){
+            return macAddress
+        }
         try {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
                 macAddress =
@@ -161,6 +166,7 @@ object PhoneUtils {
                 val wifiInfo = wifiManager.connectionInfo
                 macAddress = wifiInfo.macAddress
             }
+            SpUtils.save(context,MAC_ADDRESS_KEY,macAddress)
 //        }
         } catch (e: Exception) {
             macAddress = ""
@@ -168,21 +174,36 @@ object PhoneUtils {
         return macAddress
     }
 
+    private const val ANDROID_ID_KEY = "android_id_key"
     /**
      * 获取Android Id
      */
-    private fun getAndroidId(context: Context) = "${
-        Settings.Secure.getString(
-            context.contentResolver,
-            Settings.Secure.ANDROID_ID
-        )
-    }".md5()
+    private fun getAndroidId(context: Context):String{
+        var androidId = SpUtils.getString(context,ANDROID_ID_KEY)
 
+        if (!androidId.isNullOrBlank()){
+            return androidId
+        }
+        androidId = "${
+            Settings.Secure.getString(
+                context.contentResolver,
+                Settings.Secure.ANDROID_ID
+            )
+        }".md5()
+
+        SpUtils.save(context,ANDROID_ID_KEY,androidId)
+        return androidId
+    }
+
+    private const val DEVICE_ID_KEY = "device_id_key"
     /**
      * 获取设备id
      */
     fun getDeviceId(context: Context): String {
-        var deviceID = ""
+        var deviceID = SpUtils.getString(context,DEVICE_ID_KEY)
+        if (!deviceID.isNullOrBlank()){
+            return deviceID
+        }
         deviceID = try {
             val tm =
                 context.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
@@ -193,6 +214,7 @@ object PhoneUtils {
         if (deviceID.isNullOrBlank()) {
             deviceID = getAndroidId(context)
         }
+        SpUtils.save(context,DEVICE_ID_KEY,deviceID)
         return deviceID
     }
 
