@@ -12,6 +12,7 @@ import com.kingnet.sdk.sdk_ky.SDKApplication
 class MyBaseApplication:SDKApplication() {
     override fun onCreate() {
         super.onCreate()
+        KingNetSDK.setIsDebug(BuildConfig.DEBUG)
         KingNetSDK.initCollectData(this,"https://kdclog.kingnetdc.com")
     }
 }

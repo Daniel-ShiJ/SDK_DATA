@@ -1,6 +1,8 @@
 package com.kingnet.sdk.collectdata
 
 import android.os.Build
+import android.widget.ListView
+import androidx.core.widget.ListViewCompat
 import com.kingnet.sdk.collectdata.bean.CollectDataBean
 import com.kingnet.sdk.collectdata.utils.DataMetaUtils
 import com.kingnet.sdk.collectdata.utils.EncryptUtils
@@ -94,6 +96,7 @@ object PopEvent {
      */
     private fun buildCollectDataBean(userId:String,eventName:String,params:Map<String,String>):CollectDataBean{
         val properJson = commonParams
+        LogUtils.e("公共参数：${commonParams}")
         params.forEach { (k, v) ->
             properJson.putOpt(k,v)
         }
